@@ -51,6 +51,8 @@ def setup_PISHCAT(T: int = 3):
         G.add_edge("I_{}".format(t), "A_{}".format(t))
         G.add_edge("C_{}".format(t), "T_{}".format(t))
 
+    dag_view
+
     #  Specifiy all the exploration sets based on the manipulative variables in the DAG
     exploration_sets = list(powerset(["P", "I"]))
     # Specify the intervention domain for each variable

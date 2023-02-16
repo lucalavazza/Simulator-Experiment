@@ -469,7 +469,7 @@ def create_plankton_dataset(start: int, end: int) -> dict:
 
     files = ["C1", "C2", "C3", "C4"]  # , "C6", "C7"]
     for file in files:
-        df = read_csv("../data/plankton/{}.csv".format(file))
+        df = read_csv("../../data/plankton/{}.csv".format(file))
 
         # Impute missing values
         df.interpolate(method="cubic", inplace=True)  #  There are better imputation methods
@@ -491,7 +491,8 @@ def create_plankton_dataset(start: int, end: int) -> dict:
         data.fillna(value=0.0, inplace=True)
         assert data.isnull().sum().sum() == 0, (file, df.isnull().sum())
 
-        tmp_dict = data[["M", "N", "P", "J", "A", "E", "D"]].iloc[start:end, :].to_dict("list")
+        # tmp_dict = data[["M", "N", "P", "J", "A", "E", "D"]].iloc[start:end, :].to_dict("list")
+        tmp_dict = data[["N", "P", "J", "A", "E", "D"]].iloc[start:end, :].to_dict("list")
         # print(tmp_dict)
         ds.append({item[0]: np.array(item[1]).reshape(1, -1) for item in tmp_dict.items()})
 
@@ -500,5 +501,5 @@ def create_plankton_dataset(start: int, end: int) -> dict:
     for k in tmp_dict.keys():
         d[k] = np.concatenate(list(d[k] for d in ds), axis=0)
 
-    print("Units of all observation variables is (mu mol N / L).")
+    # print("Units of all observation variables is (mu mol N / L).")
     return d
