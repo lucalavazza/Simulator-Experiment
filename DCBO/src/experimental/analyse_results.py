@@ -88,7 +88,7 @@ def elaborate(
     )
 
     for model in exp_per_trial_cost:
-        if model == "BO" or model == "ABO":
+        if model == "BO" or model == "ABO" or model == 'PIBO':
             costs = exp_per_trial_cost[model]
             values = exp_optimal_outcome_values_during_trials[model]
             for t in range(T):

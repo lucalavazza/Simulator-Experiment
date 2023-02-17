@@ -21,6 +21,7 @@ def numerical_optimization(acquisition, inputs: ndarray, task: str, exploration_
     else:
         idx = argmin(improvements)
 
+
     # Get point with best improvement, the x new should be taken from the inputs
     x_new = inputs[idx]
 

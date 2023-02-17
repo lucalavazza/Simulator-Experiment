@@ -278,6 +278,7 @@ def plot_expected_opt_curve(time_index, ground_truth, cost, outcome, plot_params
             outcome[model][time_index][0],
             linewidth=plot_params["linewidth"],
             ls=plot_params["line_styles"][model],
+            marker=plot_params["markers_style"],
             label=plot_params["labels"][model],
             color=plot_params["colors"][model],
         )

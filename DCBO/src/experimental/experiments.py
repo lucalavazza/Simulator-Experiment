@@ -276,7 +276,7 @@ def run_all_opt_models(
             else:
                 algorithm = BO
                 alg_input_params["number_of_trials"] = number_of_trials_BO_ABO
-                print(number_of_trials_BO_ABO)
+                # print(number_of_trials_BO_ABO)
 
             print("\n\t>>>" + method + "\n")
             model = algorithm(**alg_input_params)
@@ -491,9 +491,7 @@ def create_plankton_dataset(start: int, end: int) -> dict:
         data.fillna(value=0.0, inplace=True)
         assert data.isnull().sum().sum() == 0, (file, df.isnull().sum())
 
-        # tmp_dict = data[["M", "N", "P", "J", "A", "E", "D"]].iloc[start:end, :].to_dict("list")
-        tmp_dict = data[["N", "P", "J", "A", "E", "D"]].iloc[start:end, :].to_dict("list")
-        # print(tmp_dict)
+        tmp_dict = data[["M", "N", "P", "J", "A", "E", "D"]].iloc[start:end, :].to_dict("list")
         ds.append({item[0]: np.array(item[1]).reshape(1, -1) for item in tmp_dict.items()})
 
     # Merge all observations from all datasets

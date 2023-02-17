@@ -117,6 +117,11 @@ class Root:
             self.manipulative_variables = manipulative_variables
 
         self.interventional_variable_limits = intervention_domain
+
+        # print("arrivo qui")
+        # print("manipulative vars: ",self.manipulative_variables)
+        # print("intervention domain",list(intervention_domain.keys()))
+
         assert self.manipulative_variables == list(intervention_domain.keys())
         if exploration_sets:
             assert isinstance(exploration_sets, list)

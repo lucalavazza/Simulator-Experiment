@@ -10,6 +10,7 @@ from src.utils.sem_utils.toy_sems import (
     StationaryDependentSEM,
     StationaryIndependentSEM,
 )
+from src.utils.sem_utils.real_sems import PredatorPreySEM as PPSEM
 from src.utils.sequential_intervention_functions import get_interventional_grids
 from src.utils.utilities import powerset
 
@@ -289,3 +290,59 @@ def setup_nonstat_scm(T: int = 3):
         all_causal_effects,
     )
 
+
+def setup_plankton_SEM(T):
+    
+    # p_dict = create_plankton_dataset(1, T)
+    
+    P_SEM = PPSEM()
+    p_stat_sem = PPSEM.static(P_SEM)
+    p_dyn_sem = PPSEM.dynamic(P_SEM)
+    
+    slice_node_set = ["M", "N", "P", "J", "A", "E", "D"]
+    dag_view = make_graphical_model(0, T-1, topology="dependent", nodes=slice_node_set, verbose=True)
+    G = nx_agraph.from_agraph(pygraphviz.AGraph(dag_view.source))
+    
+    for t in range(T-1):
+        G.add_edge("P_{}".format(t), "N_{}".format(t + 1))
+        G.add_edge("A_{}".format(t), "J_{}".format(t + 1))
+        G.remove_edge("M_{}".format(t), "M_{}".format(t+1))
+        
+    for t in range(T):
+        G.remove_edge("J_{}".format(t), "A_{}".format(t))
+        G.add_edge("P_{}".format(t), "A_{}".format(t))
+        G.add_edge("P_{}".format(t), "E_{}".format(t))
+        G.add_edge("J_{}".format(t), "D_{}".format(t))
+        G.add_edge("A_{}".format(t), "D_{}".format(t))
+        
+    #  Specifiy all the exploration sets based on the manipulative variables in the DAG
+    exploration_sets = list(powerset(["M", "J", "A"]))
+    print
+    # Specify the intervention domain for each variable
+    intervention_domain = {"M": [40, 160], "J": [0, 20], "A":[0, 100]}
+    
+    # Specify a grid over each exploration and use the grid to find the best intevention value for that ES
+    interventional_grids = get_interventional_grids(exploration_sets, intervention_domain, size_intervention_grid=100)
+    
+    _, optimal_interventions, true_objective_values, _, _, all_causal_effects = optimal_sequence_of_interventions(
+        exploration_sets=exploration_sets,
+        interventional_grids=interventional_grids,
+        initial_structural_equation_model=p_stat_sem,
+        structural_equation_model=p_dyn_sem,
+        G=G,
+        T=T,
+        model_variables=slice_node_set,
+        target_variable="D",
+    )
+    
+    return (
+        p_stat_sem,
+        p_dyn_sem,
+        dag_view,
+        G,
+        exploration_sets,
+        intervention_domain,
+        true_objective_values,
+        optimal_interventions,
+        all_causal_effects,
+    )
