@@ -1,2 +1,2 @@
-# Thesis
+# Bayesian Optimisation with Prior Knowledge
  
