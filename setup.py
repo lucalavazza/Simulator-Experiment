@@ -23,11 +23,11 @@ with open('requirements.txt', 'r') as req:
 assert sys.version_info >= (3,), 'This package requires Python 3.'
 
 setup(
-    name="DCBO",
-    description='Toolkit for causal decision making under uncertainty.',
+    name="DCpiBO",
+    description='Bayesian Optimisation with Prior Knowledge.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/neildhir/DCBO',
+    url='https://github.com/lucalavazza/Bayesian-Optimisation-with-Prior-Knowledge',
     packages=find_packages(exclude=['test*']),
     include_package_data=True,
     install_requires=requires,
