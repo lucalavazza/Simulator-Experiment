@@ -2,7 +2,7 @@
 
 This is the Python implementation for the work "Analysis and Development of Bayesian Optimisation Techniques with the Use of Prior Knowledge", written by Luca Lavazza as his Master Thesis for the Master Degree in Computer Engineering at Università degli Studi di Brescia.
 
-Based on the work [Dynamic Causal Bayesian Optimization](https://github.com/neildhir/DCBO), its main features are the notebooks built to test $\pi$BO and DC$\pi$BO.
+Based on the work [Dynamic Causal Bayesian Optimization](https://github.com/neildhir/DCBO), its main features are the notebooks built to test $\pi$ BO and DC $\pi$ BO.
  
 ## License
 
