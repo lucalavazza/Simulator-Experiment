@@ -1,6 +1,6 @@
 # Simulator-Based Experiment
 
-This is the Python implementation of the Simulator-Based experiment for the work "Analysis and Development of Bayesian Optimisation Techniques with the Use of Prior Knowledge", written by Luca Lavazza as his Master Thesis for the Master Degree in Computer Engineering at Università degli Studi di Brescia.
+This is the Python implementation of the Simulator-Based experiment for the work "Dynamic Causal Bayesian Optimisation with Prior Knowledge", produced by Luca Lavazza for the research of the same name written by Luca Lavazza and Federico Cerutti.
 
 Based on the work [Dynamic Causal Bayesian Optimization](https://github.com/neildhir/DCBO), [Yawning Titan](https://github.com/dstl/YAWNING-TITAN) and [Developing Optimal Causal Cyber-Defence Agents via Cyber Security Simulation](https://github.com/alan-turing-institute/causal-cyber-defence), its main feature is the [notebook](https://github.com/lucalavazza/Simulator-Experiment/blob/main/SIMULATOR_EXPERIMENT/simulator_YT/PISCHAT.ipynb)  built to execute the experiment.
  
@@ -14,4 +14,4 @@ You should have received a copy of the GNU General Public License along with thi
 
 ## Disclaimer
 
-This is research code. Written by a student. I am not a professional software developer and am thus not equipped to make a (more) robust implementation. Consequently, things may break. If they do please don't get angry. Instead, if you would like to contribute, find things that are broken or have any suggestions for this work, you can open an issue on this repository.
+This is research code. I am not a professional software developer and am thus not equipped to make a (more) robust implementation. Consequently, things may break. If they do, please don't get angry. Instead, if you would like to contribute, find things that are broken or have any suggestions for this work, you can open an issue on this repository.
